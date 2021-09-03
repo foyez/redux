@@ -1,17 +1,3 @@
-# Redux
-
-## Redux lifecycle
-
-[redux lifecycle](https://redux.js.org/assets/images/ReduxAsyncDataFlowDiagram-d97ff38a0f4da0f327163170ccc13e80.gif)
-
-## Redux in plain JS
-
-<details>
-<summary>View contents</summary>
-
-[You can find all the code for this section here](https://github.com/foyez/redux/tree/main/src/redux.js)
-
-```js
 const {
   createStore,
   combineReducers,
@@ -138,50 +124,3 @@ store.dispatch({ type: 'INCREMENT' }) // counter: 1
 store.dispatch(add(10)) // result: 10
 actions.add(4) // result: 14
 actions.subtraction(2) // result: 12
-```
-
-</details>
-
-## Redux with React
-
-<details>
-<summary>View contents</summary>
-
-```js
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
-
-const counterReducer = (state = 0, action) => {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1
-    case 'ADD':
-      return state + action.value
-    case 'ZERO':
-      return 0
-    default:
-      return state
-  }
-}
-
-const store = createStore(counterReducer)
-
-const App = () => (
-  <div>
-    <div>{store.getState()}</div>
-    <button onClick={(e) => store.dispatch({ type: 'INCREMENT' })}>plus</button>
-    <button onClick={(e) => store.dispatch({ type: 'ADD', value: 10 })}>add 10</button>
-    <button onClick={(e) => store.dispatch({ type: 'ZERO' })}>zero</button>
-  </div>
-)
-
-const renderApp = () => {
-  ReactDOM.render(<App />, document.getElementById('root'))
-}
-
-renderApp()
-store.subscribe(renderApp)
-```
-
-</details>
