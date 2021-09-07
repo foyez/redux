@@ -10,13 +10,18 @@ const {
 //                 ||
 // Actions --> Middleware --> Dispatcher --> Store --> View --> Actions
 
-// The whole state of the application is stored into one JavaScript-object in the store.
+// The whole state of the application is stored into one
+// JavaScript-object in the store.
 
-// The state of the store is changed with actions. Actions are objects, which have at least a field determining the type of
-// the action. If there is data involved with the action, other fields can be declared as needed.
+// The state of the store is changed with actions.
+// Actions are objects, which have at least a field determining
+// the type of the action. If there is data involved with
+// the action, other fields can be declared as needed.
 
-// The impact of the action to the state of the application is defined using a reducer. A reducer is a pure function which is
-// given the current state and an action as parameters. It returns a new state based on the actions type.
+// The impact of the action to the state of the application
+// is defined using a reducer. A reducer is a pure function
+// which is given the current state and an action as parameters.
+// It returns a new state based on the actions type.
 
 const initialState = {
   counter: {
@@ -29,7 +34,8 @@ const initialState = {
   },
 }
 
-// Reducer - pure function define which action will do what & return new state based on action
+// Reducer - pure function define which action will do
+// what & return new state based on action
 const counterReducer = (counter = initialState.counter, action) => {
   switch (action.type) {
     case 'INCREMENT':
@@ -56,11 +62,15 @@ const rootReducer = combineReducers({
 })
 
 // Middleware
-//  Redux middleware provides a third-party extension point between dispatching an action, and the moment it reaches the
-// reducer. People use Redux middleware for logging, crash reporting, talking to an asynchronous API, routing, and more.
+//  Redux middleware provides a third-party extension point
+// between dispatching an action, and the moment it reaches
+// the reducer. People use Redux middleware for logging,
+// crash reporting, talking to an asynchronous API, routing, and more.
 
-// A Redux middleware is a function returning a function, which takes next as a parameter. Then the inner function returns
-// another function which takes action as a parameter and finally returns next(action)
+// A Redux middleware is a function returning a function,
+// which takes next as a parameter. Then the inner function
+// returns another function which takes action as a parameter
+// and finally returns next(action)
 const customMiddleware = (store) => (next) => (action) => {
   console.log('customMiddleware Triggered: ', action)
 
@@ -78,11 +88,13 @@ const incrementMiddleware = (store) => (next) => (action) => {
 }
 
 // Enhancer
-// A store enhancer is a higher-order function that composes a store creator to return a new enhanced store creator.
-// This is similar to middleware in that it allows you to alter the store interface in a composable way.
+// A store enhancer is a higher-order function that composes
+// a store creator to return a new enhanced store creator.
+// This is similar to middleware in that it allows you
+// to alter the store interface in a composable way.
 
-// Store enhancers are much the same concept as higher-order components in React,
-// which are also occasionally called “component enhancers”.
+// Store enhancers are much the same concept as higher-order
+// components in React,  which are also occasionally called “component enhancers”.
 // Example: Redux devtools
 // Most likely you'll never write a store enhancer
 const logEnhancer = (createStore) => (reducer, initialState, enhancer) => {
@@ -119,7 +131,8 @@ const add = (amount) => ({ type: 'ADD', payload: amount })
 const subtraction = (amount) => ({ type: 'SUBTRACTION', payload: amount })
 const actions = bindActionCreators({ add, subtraction }, store.dispatch)
 
-// The store uses the reducer to handle actions, which are dispatched or 'sent' to the store with its dispatch-method.
+// The store uses the reducer to handle actions, which
+// are dispatched or 'sent' to the store with its dispatch-method.
 store.dispatch({ type: 'INCREMENT' }) // counter: 1
 store.dispatch(add(10)) // result: 10
 actions.add(4) // result: 14

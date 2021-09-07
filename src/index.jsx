@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
+
+import { Chores } from './chores'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Chores />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 )
