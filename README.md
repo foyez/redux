@@ -1,5 +1,29 @@
 # Redux
 
+## The 3 Principles of redux
+
+1. Single source of truth
+2. State is read only
+3. Changes using pure functions
+
+#### Redux Pattern
+
+```
+Action --> Reducer --> Store --> Make Changes
+```
+
+#### Flux Pattern
+
+```
+Action --> Dispatcher --> Store --> View
+```
+
+#### MVC Pattern
+
+```
+Action --> Controller --> Model --> View
+```
+
 ## Redux lifecycle
 
 [redux lifecycle](https://redux.js.org/assets/images/ReduxAsyncDataFlowDiagram-d97ff38a0f4da0f327163170ccc13e80.gif)
