@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { Chores } from './chores'
+import { StarWars } from './starwars'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Chores />
+    <StarWars />
   </React.StrictMode>,
   document.getElementById('root'),
 )

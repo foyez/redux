@@ -225,3 +225,16 @@ ReactDOM.render(<App />, document.getElementById('root'))
 ```
 
 </details>
+
+### Thunk Middleware
+
+```js
+const middleware = (store) => (next) => (action) => {
+  if (typeof action === 'function') {
+    const fn = action
+    return fn(store.dispatch)
+  }
+
+  return next(action)
+}
+```
