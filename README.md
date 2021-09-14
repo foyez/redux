@@ -181,48 +181,189 @@ actions.subtraction(2) // result: 12
 
 ## Redux with React
 
+### Using Redux Hooks
+
 <details>
 <summary>View contents</summary>
 
-#### Using Redux hooks
+#### Connecting Redux with React
 
-```jsx
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+<details>
+<summary>View contents</summary>
 
-const INCREMENT = 'INCREMENT'
+- create a react app and install `redux` & `react-redux` packages
 
-const increment = () => ({
-  type: INCREMENT,
+```bash
+> npx create-react-app redux-app
+> cd redux-app
+> yarn add redux react-redux
+```
+
+- create `store` directory and add these files
+
+```bash
+> mkdir store
+> cd store
+> touch index.js
+> mkdir count
+> cd count
+> touch reducer.js
+```
+
+```js
+// src/store/reducer.js
+
+import { nanoId } from '../../utils'
+
+// initialState
+const initialItems = [{ id: nanoId(), name: 'Fish', price: 400, quantity: 2 }]
+
+export const itemsReducer = (state = initialItems, action) => {
+  return state
+}
+```
+
+```js
+// src/store/index.js
+
+import { combineReducers, createStore } from 'redux'
+import { itemsReducer } from './items/reducer'
+
+const reducer = combineReducers({
+  items: itemsReducer,
 })
 
-const counterReducer = (state = 0, action) => {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1
-    case 'ADD':
-      return state + action.value
-    case 'ZERO':
-      return 0
-    default:
-      return state
-  }
+const enhancer = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
+export const store = createStore(reducer, enhancer)
+```
+
+```jsx
+// src/Cart.jsx
+
+import React from 'react'
+
+export const Cart = () => {
+  return <div>Cart</div>
+}
+```
+
+```jsx
+// src/index.jsx
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+
+import { Cart } from './components/Cart.jsx'
+import { store } from './store'
+
+ReactDOM.render(
+  <Provider store={store}>
+    <React.StrictMode>
+      <Cart />
+    </React.StrictMode>
+  </Provider>,
+  document.getElementById('root)
+)
+```
+
+**In Redux DevTools**
+
+![redux-state](./assets/img/redux-1.png)
+
+</details>
+
+#### Adding Selector and getting data
+
+<details>
+<summary>View contents</summary>
+
+```js
+// src/store/items/selectors.js
+
+export const selectItems = (state) => state.items
+```
+
+```jsx
+// src/components/Cart.jsx
+
+import React from 'react'
+import { useSelector } from 'react-redux'
+
+import { selectItems } from '../store/items/selectors'
+
+export const Cart = () => {
+  const items = useSelector(selectItems)
+
+  return (
+    <div>
+      <div>
+        {items.map((item) => (
+          <div key={item.id} style={{ border: '1px solid black' }}>
+            <h3>{item.name}</h3>
+            <p>Price: {item.price} Taka</p>
+            <p>Quantity: {item.quantity}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+```
+
+</details>
+
+#### Adding Actions & Reducers
+
+<details>
+<summary>View contents</summary>
+
+```jsx
+// src/store/items/actions.js
+
+import { useDispatch } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+export const Actions = {
+  ITEM_ADDED: 'ITEM_ADDED',
 }
 
-const store = createStore(counterReducer)
+const addNewItem = (name, price) => ({
+  type: Actions.ITEM_ADDED,
+  payload: { name, price },
+})
 
-const App = () => (
-  <div>
-    <div>{store.getState()}</div>
-    <button onClick={(e) => store.dispatch({ type: 'INCREMENT' })}>plus</button>
-    <button onClick={(e) => store.dispatch({ type: 'ADD', value: 10 })}>add 10</button>
-    <button onClick={(e) => store.dispatch({ type: 'ZERO' })}>zero</button>
-  </div>
-)
-
-ReactDOM.render(<App />, document.getElementById('root'))
+export const useItemActions = () => {
+  const dispatch = useDispatch()
+  return bindActionCreators({ addNewItem }, dispatch)
+}
 ```
+
+```jsx
+// src/store/items/reducer.js
+
+import { nanoId } from '../../utils'
+import { Actions } from './actions'
+
+// initialState
+const initialItems = [{ id: nanoId(), name: 'Fish', price: 400, quantity: 2 }]
+
+export const itemsReducer = (state = initialItems, action) => {
+  if (action.type === Actions.ITEM_ADDED) {
+    const item = { id: nanoId(), quantity: 1, ...action.payload }
+    return [...state, item]
+  }
+
+  return state
+}
+```
+
+**In Redux DevTools**
+
+![redux-state](./assets/img/redux-2.png)
+
+</details>
 
 </details>
 

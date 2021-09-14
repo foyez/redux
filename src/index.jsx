@@ -1,11 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-import { StarWars } from './starwars'
+import { BasicRedux } from './basic-redux'
 
 ReactDOM.render(
   <React.StrictMode>
-    <StarWars />
+    <BasicRedux />
   </React.StrictMode>,
   document.getElementById('root'),
 )
