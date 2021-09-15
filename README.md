@@ -26,7 +26,9 @@ Action --> Controller --> Model --> View
 
 ## Redux lifecycle
 
-![redux lifecycle](https://redux.js.org/assets/images/ReduxAsyncDataFlowDiagram-d97ff38a0f4da0f327163170ccc13e80.gif)
+![redux lifecycle](./assets/img/ReduxAsyncDataFlowDiagram.gif)
+
+[source](https://redux.js.org/assets/images/ReduxAsyncDataFlowDiagram-d97ff38a0f4da0f327163170ccc13e80.gif)
 
 ## Redux in plain JS
 
