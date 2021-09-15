@@ -26,7 +26,7 @@ Action --> Controller --> Model --> View
 
 ## Redux lifecycle
 
-![redux lifecycle](./assets/img/ReduxAsyncDataFlowDiagram.gif)
+<img src="./assets/img/ReduxAsyncDataFlowDiagram.gif" alt="redux lifecycle" style="width:450px;"/>
 
 [source](https://redux.js.org/assets/images/ReduxAsyncDataFlowDiagram-d97ff38a0f4da0f327163170ccc13e80.gif)
 
