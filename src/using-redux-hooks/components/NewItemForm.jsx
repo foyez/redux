@@ -12,6 +12,8 @@ export const NewItemForm = () => {
   const handleSubmitItem = (e) => {
     e.preventDefault()
     addNewItem(name, price)
+    setName('')
+    setPrice(0)
   }
 
   return (

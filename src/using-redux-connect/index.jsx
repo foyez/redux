@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { store } from './store'
 import { Cart } from './components/Cart'
 
-export const BasicRedux = () => {
+export const ReduxConnect = () => {
   return (
     <Provider store={store}>
       <Cart />

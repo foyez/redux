@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BasicRedux } from './basic-redux'
+
+import { ReduxConnect } from './using-redux-connect'
 
 ReactDOM.render(
   <React.StrictMode>
-    <BasicRedux />
+    <ReduxConnect />
   </React.StrictMode>,
   document.getElementById('root'),
 )

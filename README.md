@@ -26,7 +26,7 @@ Action --> Controller --> Model --> View
 
 ## Redux lifecycle
 
-[redux lifecycle](https://redux.js.org/assets/images/ReduxAsyncDataFlowDiagram-d97ff38a0f4da0f327163170ccc13e80.gif)
+![redux lifecycle](https://redux.js.org/assets/images/ReduxAsyncDataFlowDiagram-d97ff38a0f4da0f327163170ccc13e80.gif)
 
 ## Redux in plain JS
 
@@ -364,6 +364,13 @@ export const itemsReducer = (state = initialItems, action) => {
 ![redux-state](./assets/img/redux-2.png)
 
 </details>
+
+</details>
+
+### Using Redux Connect
+
+<details>
+<summary>View contents</summary>
 
 </details>
 
